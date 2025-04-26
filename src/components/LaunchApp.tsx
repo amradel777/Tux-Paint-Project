@@ -2,49 +2,36 @@
 import { useState } from "react";
 
 export const LaunchApp = () => {
-
     const [launchStatus, setLaunchStatus] = useState('');
 
     const launchApp = async () => {
-        try {
+        // First, check if running locally (development environment)
+        const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-            // Fallback to Node.js method
+        if (isLocalDev) {
+            // If in development, try to use the API
             try {
                 const response = await fetch('/api/tuxpaint/run', {
                     method: 'GET'
                 });
+
                 if (response.ok) {
                     setLaunchStatus('success');
                     setTimeout(() => setLaunchStatus(''), 5000);
                     return;
                 }
-            } catch (nodeError) {
-                console.log('Node.js launch failed:', nodeError);
-            }
 
-            // Fallback to Python method
-            try {
-                const response = await fetch('/api/launch-tuxpaint-py', {
-                    method: 'POST'
-                });
-                if (response.ok) {
-                    setLaunchStatus('success');
-                    setTimeout(() => setLaunchStatus(''), 5000);
-                    return;
-                }
-            } catch (pyError) {
-                console.log('Python launch failed:', pyError);
+                // If API fails, show error with download options
+                setLaunchStatus('error');
+            } catch (error) {
+                console.error('Error launching Tux Paint:', error);
+                setLaunchStatus('error');
             }
-
-            // All methods failed
-            setLaunchStatus('error');
-        } catch (error) {
-            setLaunchStatus('error');
-            console.error('خطأ في تشغيل البرنامج:', error);
+        } else {
+            // In production, show download options
+            setLaunchStatus('download');
         }
-    }
-
-
+    };
 
     return (
         <>
@@ -71,25 +58,29 @@ export const LaunchApp = () => {
                     <div className="mt-3 p-2 bg-red-100 text-red-800 rounded-md">
                         لم نتمكن من تشغيل البرنامج. يرجى التأكد من أنه مثبت على جهازك.
                         <div className="mt-2 text-sm">
-                            يمكنك أيضاً تشغيل البرنامج عبر:
-                            <ul className="list-disc list-inside mr-4">
-                                <li>فتح موجه الأوامر وتشغيل: tuxpaint</li>
-                                <li>تشغيل ملف Python: python -m tuxpaint</li>
-                            </ul>
+                            يمكنك تحميل البرنامج من الروابط أدناه:
+                            <div className="flex flex-col gap-2 mt-2">
+                                <a href="https://tuxpaint.org/download/windows/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">تحميل للويندوز</a>
+                                <a href="https://tuxpaint.org/download/macos/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">تحميل لنظام ماك</a>
+                                <a href="https://tuxpaint.org/download/linux/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">تحميل للينكس</a>
+                            </div>
                         </div>
                     </div>
                 )
             }
 
             {
-                launchStatus === 'protocol-error' && (
+                launchStatus === 'download' && (
                     <div className="mt-3 p-2 bg-yellow-100 text-yellow-800 rounded-md">
-                        يبدو أن متصفحك لا يدعم تشغيل البرنامج مباشرة. يرجى:
-                        <ul className="list-disc list-inside mr-4 mt-2">
-                            <li>تثبيت برنامج Tux Paint على جهازك</li>
-                            <li>تشغيله يدوياً من قائمة ابدأ</li>
-                            <li>أو استخدام أحد الروابط أعلاه لتحميل البرنامج</li>
-                        </ul>
+                        لتشغيل برنامج Tux Paint، يجب تثبيته أولاً على جهازك. يمكنك تحميله من الروابط التالية:
+                        <div className="flex flex-col gap-2 mt-2">
+                            <a href="https://tuxpaint.org/download/windows/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">تحميل للويندوز</a>
+                            <a href="https://tuxpaint.org/download/macos/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">تحميل لنظام ماك</a>
+                            <a href="https://tuxpaint.org/download/linux/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">تحميل للينكس</a>
+                        </div>
+                        <div className="mt-2">
+                            بعد التثبيت، يمكنك تشغيل البرنامج من قائمة البرامج على جهازك.
+                        </div>
                     </div>
                 )
             }

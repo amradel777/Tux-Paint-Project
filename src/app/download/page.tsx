@@ -4,8 +4,37 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaWindows, FaApple, FaLinux, FaDownload, FaPlay } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function Download() {
+    const [showMessage, setShowMessage] = useState(false);
+
+    // Function to handle the launch button click
+    const handleLaunchClick = () => {
+        // Check if we're in development or production
+        const isLocalDev = typeof window !== 'undefined' &&
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+        if (isLocalDev) {
+            // In development, try to launch via API
+            fetch('/api/tuxpaint/run', {
+                method: 'GET'
+            }).then(response => {
+                if (response.ok) {
+                    alert('تم تشغيل برنامج تكس بينت بنجاح.');
+                } else {
+                    setShowMessage(true);
+                }
+            }).catch(err => {
+                console.error(err);
+                setShowMessage(true);
+            });
+        } else {
+            // In production, show download message
+            setShowMessage(true);
+        }
+    };
+
     return (
         <div>
             {/* Hero Section */}
@@ -22,31 +51,7 @@ export default function Download() {
                             className="btn-primary flex items-center gap-2 text-lg"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={async () => {
-                                // Function to launch Tux Paint if installed
-                                if (typeof window !== 'undefined') {
-                                    try {
-                                        try {
-                                            const response = await fetch('/api/tuxpaint/run', {
-                                                method: 'GET'
-                                            });
-                                            if (response.ok) {
-                                                alert('تم تشغيل برنامج تكس بينت بنجاح.');
-                                                return;
-                                            }
-                                        } catch (nodeError) {
-                                            console.log('Node.js launch failed:', nodeError);
-                                        }
-                                        const newWindow = window.open('tuxpaint://', '_blank');
-                                        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                                            alert('يبدو أن برنامج تكس بينت غير مثبت. يرجى تثبيته أولاً.');
-                                        }
-                                    } catch (err) {
-                                        console.error(err);
-                                        alert('حدث خطأ أثناء محاولة تشغيل البرنامج. يرجى التأكد من تثبيته بشكل صحيح.');
-                                    }
-                                }
-                            }}
+                            onClick={handleLaunchClick}
                         >
                             <FaPlay /> تشغيل تكس بينت
                         </motion.button>
@@ -60,6 +65,14 @@ export default function Download() {
                             </motion.button>
                         </Link>
                     </div>
+
+                    {showMessage && (
+                        <div className="mt-6 p-4 bg-yellow-100 text-yellow-800 rounded-lg max-w-2xl mx-auto">
+                            <p className="font-medium">يجب أن يكون برنامج Tux Paint مثبتاً على جهازك لتشغيله.</p>
+                            <p className="mt-2">إذا لم يكن البرنامج مثبتاً بعد، يمكنك تحميله من قسم التحميل أدناه.</p>
+                            <p className="mt-2">بعد التثبيت، استخدم قائمة البرامج على جهازك لتشغيل Tux Paint.</p>
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -73,10 +86,7 @@ export default function Download() {
                             <div className="lg:w-1/2">
                                 <h3 className="text-2xl font-bold mb-4 text-[#424242]">كيفية تشغيل برنامج تكس بينت</h3>
                                 <p className="text-gray-600 mb-6">
-                                    إذا كان برنامج تكس بينت مثبتًا بالفعل على جهازك، يمكنك تشغيله مباشرة من خلال النقر على زر &quot;تشغيل تكس بينت&quot; أعلاه.
-                                </p>
-                                <p className="text-gray-600 mb-6">
-                                    في حال لم يعمل الزر، يمكنك تشغيل البرنامج بإحدى الطرق التالية:
+                                    بعد تثبيت برنامج تكس بينت على جهازك، يمكنك تشغيله بإحدى الطرق التالية:
                                 </p>
                                 <ul className="list-disc mr-6 space-y-2 text-gray-600">
                                     <li>من قائمة &quot;ابدأ&quot; في ويندوز، ابحث عن &quot;Tux Paint&quot;</li>
