@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# موقع تكس بينت (Tux Paint Website)
 
-## Getting Started
+موقع تعليمي يشرح برنامج Tux Paint، وهو برنامج رسم مفتوح المصدر للأطفال يجمع بين المرح والتعليم. الموقع مصمم باللغة العربية.
 
-First, run the development server:
+## المميزات
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- تصميم جذاب وألوان فاتحة مناسبة للأطفال
+- شرح تفصيلي لمميزات البرنامج وفوائده
+- دليل استخدام سهل ومصور
+- إمكانية تشغيل البرنامج مباشرة من الموقع (إذا كان مثبتًا)
+- تصميم متجاوب يعمل على جميع الأجهزة
+
+## التقنيات المستخدمة
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion للحركات والانتقالات
+- React Icons
+
+## التثبيت
+
+1. قم بتنزيل المشروع:
+
+```
+git clone https://github.com/yourusername/tux-paint-website.git
+cd tux-paint-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. قم بتثبيت الاعتمادات:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. قم بتشغيل خادم التطوير:
 
-## Learn More
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. افتح متصفحك وانتقل إلى `http://localhost:3000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## هيكل المشروع
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/app/` - صفحات الموقع (الرئيسية، المميزات، طريقة الاستخدام، الفوائد، التحميل)
+- `src/components/` - المكونات القابلة لإعادة الاستخدام
+- `public/` - الصور والموارد الثابتة
 
-## Deploy on Vercel
+## المساهمة
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+نرحب بمساهماتك! إذا وجدت خطأً أو لديك اقتراح لتحسين الموقع، يرجى فتح issue أو إرسال pull request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## الترخيص
+
+هذا المشروع مرخص تحت رخصة MIT.

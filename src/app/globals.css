@@ -1,26 +1,226 @@
 @import "tailwindcss";
+@import "tailwindcss/utilities";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #FF8A65;
+  --secondary: #4FC3F7;
+  --accent: #FFEB3B;
+  --background: #FAFAFA;
+  --text: #424242;
+  --border-radius: 0.5rem;
+  --transition-speed: 0.3s;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Cairo', Arial, sans-serif;
+  /* font-family: 'Nunito', sans-serif; */
+  transition: background-color var(--transition-speed) ease;
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply px-6 py-3 bg-[#FF8A65] text-white rounded-full font-bold shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition-all duration-300;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-center mb-8 text-[#424242];
+  }
+
+  .nav-link-active {
+    @apply text-[#FF8A65] font-bold relative;
+  }
+
+  .nav-link-active::after {
+    @apply content-[''] absolute bottom-0 right-0 left-0 h-0.5 bg-[#FF8A65] rounded-full;
+  }
+
+  /* Navbar glow effect for active items */
+  .navbar-glow {
+    text-shadow: 0 0 8px rgba(255, 138, 101, 0.7);
+    position: relative;
+  }
+
+  .navbar-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 138, 101, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.5rem;
+    z-index: -1;
+  }
+
+  .navbar-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* Active navbar item animation */
+  .navbar-item-active {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .navbar-item-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to left, var(--primary), var(--secondary), var(--accent));
+    animation: gradient-shift 3s ease infinite;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(255, 138, 101, 0.5);
+  }
+  
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #FFF9C4 0%, #FFECB3 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(255, 138, 101, 0.1), transparent 25%),
+              radial-gradient(circle at 70% 20%, rgba(79, 195, 247, 0.1), transparent 25%),
+              radial-gradient(circle at 50% 80%, rgba(255, 235, 59, 0.1), transparent 25%);
+  pointer-events: none;
+}
+
+.floating-bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(8px);
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-25px) scale(1.1);
+  }
+}
+
+.tux-shadow {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* تأثير تحميل للصور */
+.image-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(
+    90deg,
+    var(--background) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    var(--background) 100%
+  );
+  transform: translateX(-100%);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* تأثير ظهور العناصر عند التمرير */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Navbar animations */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to left, var(--primary), var(--secondary));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Glass effect for navbar */
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }

@@ -1,103 +1,135 @@
 import Image from "next/image";
+import Link from "next/link";
+import Hero from "@/components/Hero";
+import FeatureCard from "@/components/FeatureCard";
+import SectionTitle from "@/components/SectionTitle";
+import GradientBorder from "@/components/GradientBorder";
+import GradientDivider from "@/components/GradientDivider";
+import { FaPalette, FaMagic, FaLightbulb, FaLock, FaGlobeAmericas, FaSmile } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div>
+      {/* Hero Section */}
+      <Hero />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <GradientDivider color="primary" direction="center" height="thin" />
+
+      {/* About Section */}
+      <section className="py-12 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle color="from-[#FF8A65]" center={false}>
+            ما هو برنامج تكس بينت؟
+          </SectionTitle>
+
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="md:w-1/2 order-2 md:order-1">
+              <GradientBorder borderType="orange-yellow" className="h-full">
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-4 text-[#424242]">برنامج رسم مصمم خصيصًا للأطفال</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    تكس بينت (Tux Paint) هو برنامج رسم مفتوح المصدر مصمم خصيصًا للأطفال من سن 3 إلى 12 عامًا. يتميز بواجهة سهلة الاستخدام وممتعة، ويتوفر بأكثر من 100 لغة حول العالم، مما يجعله أداة تعليمية وترفيهية مثالية للأطفال.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    تم تطوير البرنامج بهدف توفير بيئة آمنة وممتعة للأطفال للتعبير عن إبداعاتهم، مع أدوات رسم متنوعة ومؤثرات صوتية تفاعلية تجعل تجربة الرسم أكثر متعة وتشويقًا.
+                  </p>
+                </div>
+              </GradientBorder>
+            </div>
+
+            <div className="md:w-1/2 order-1 md:order-2">
+              <GradientBorder borderType="blue-purple" className="overflow-hidden">
+                <Image
+                  src="/tux-paint-interface.png"
+                  alt="Tux Paint Interface"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                />
+              </GradientBorder>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <GradientDivider color="secondary" direction="right-to-left" height="medium" />
+
+      {/* Features Section */}
+      <section className="py-12 md:py-24 bg-[#F5F5F5]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionTitle color="from-[#4FC3F7]">
+            مميزات برنامج تكس بينت
+          </SectionTitle>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <FeatureCard
+              icon={<FaPalette size={24} />}
+              title="أدوات رسم متنوعة"
+              description="فرش، أختام، أشكال، وأدوات متعددة تناسب كافة الاحتياجات الإبداعية للأطفال."
+              color="bg-[#FF8A65]"
+            />
+
+            <FeatureCard
+              icon={<FaMagic size={24} />}
+              title="مؤثرات سحرية"
+              description="مؤثرات خاصة ممتعة مثل التموج، التشويش، الألوان المتدرجة وغيرها."
+              color="bg-[#4FC3F7]"
+            />
+
+            <FeatureCard
+              icon={<FaLightbulb size={24} />}
+              title="سهل التعلم"
+              description="واجهة بديهية مصممة خصيصًا للأطفال مع تعليمات صوتية وبصرية مساعدة."
+              color="bg-[#FFB74D]"
+            />
+
+            <FeatureCard
+              icon={<FaLock size={24} />}
+              title="آمن للأطفال"
+              description="بيئة آمنة بدون إعلانات أو مشتريات داخل التطبيق أو مخاطر عبر الإنترنت."
+              color="bg-[#AED581]"
+            />
+
+            <FeatureCard
+              icon={<FaGlobeAmericas size={24} />}
+              title="متعدد اللغات"
+              description="متوفر بأكثر من 100 لغة مما يجعله مناسبًا للأطفال من مختلف أنحاء العالم."
+              color="bg-[#BA68C8]"
+            />
+
+            <FeatureCard
+              icon={<FaSmile size={24} />}
+              title="مؤثرات صوتية ممتعة"
+              description="يحتوي على مؤثرات صوتية مرحة تتفاعل مع أدوات الرسم لتجربة ممتعة."
+              color="bg-[#4DD0E1]"
+            />
+          </div>
+        </div>
+      </section>
+
+      <GradientDivider color="accent" direction="center" height="thick" />
+
+      {/* CTA Section */}
+      <section className="py-16 gradient-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <SectionTitle color="from-[#FFEB3B]">
+            جاهز لبدء المغامرة الإبداعية؟
+          </SectionTitle>
+
+          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+            انضم إلى ملايين الأطفال حول العالم الذين يستمتعون بتكس بينت كل يوم!
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="/download" className="btn-primary">
+              تشغيل البرنامج
+            </Link>
+            <Link href="/how-to-use" className="px-6 py-3 bg-white text-[#FF8A65] border border-[#FF8A65] rounded-full font-bold shadow-md hover:bg-gray-50">
+              طريقة الاستخدام
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
