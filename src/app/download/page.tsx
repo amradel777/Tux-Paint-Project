@@ -48,7 +48,7 @@ export default function Download() {
                     </p>
                     <div className="flex flex-wrap justify-center gap-6">
                         <motion.button
-                            className="btn-primary cursor-pointer flex items-center gap-2 text-lg"
+                            className="btn-primary  cursor-pointer flex items-center gap-2 text-lg"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={handleLaunchClick}
