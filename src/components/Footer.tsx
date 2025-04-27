@@ -78,16 +78,22 @@ const Footer = () => {
                         </motion.div>
 
                         <motion.div
-                            className="mb-8 md:mb-0"
+                            className="mb-8 md:mb-0 mt-10 text-center justify-center"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                         >
                             <Image src="/Ministry.png.png"
                                 alt="Tux Paint Logo"
+                                className="mb-4 text-center justify-center"
+
                                 width={250}
                                 height={250}
                             />
+
+
+                            <span className="text-[#FF8A65] font-medium  mt-4   ">أشراف الأستاذة: <span className="name">ندى سعيد أحمد الزرقوي</span></span>
+                            <span className="text-[#4FC3F7] font-medium block">تصميم وبرمجة: <span className="name">فاطمة محمد أحمد الزهراني</span></span>
 
 
                         </motion.div>
@@ -169,8 +175,8 @@ const Footer = () => {
                         transition={{ duration: 0.8 }}
                     />
 
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div className="flex space-x-5 space-x-reverse mb-6 md:mb-0">
+                    <div className="flex flex-col  md:flex-row md:justify-between md:items-center">
+                        <div className="flex space-x-5  space-x-reverse mb-6 md:mb-0 ">
                             <motion.a
                                 href="#"
                                 className="text-gray-500 hover:text-[#FF8A65] transition-colors duration-300"
@@ -205,7 +211,8 @@ const Footer = () => {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                         >
-                            © {new Date().getFullYear()} تكس بينت. جميع الحقوق محفوظة.
+                            {/* © {new Date().getFullYear()} */}
+                            <span className="text-gray-500 text-sm">  All Rights Reserved Powered by Designer Fatima <span> (رسومات ممتعة للأطفال - Tux Paint )</span> Copyright © 2025</span>
                         </motion.p>
                     </div>
                 </div>

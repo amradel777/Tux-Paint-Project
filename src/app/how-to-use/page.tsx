@@ -168,7 +168,14 @@ export default function HowToUse() {
                     <div className="relative w-full max-w-3xl mx-auto bg-white p-3 rounded-2xl shadow-lg overflow-hidden">
                         <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
                             <div className="w-full h-[400px] bg-gray-200 rounded-xl flex items-center justify-center">
-                                <p className="text-gray-500">فيديو توضيحي (قريبًا)</p>
+                                {/* add video from youtube */}
+                                <iframe
+                                    src="https://www.youtube.com/embed/pCSSVXeImAM"
+                                    title="Tux Paint Tutorial"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="w-full h-full"
+                                ></iframe>
                             </div>
                         </div>
                     </div>
