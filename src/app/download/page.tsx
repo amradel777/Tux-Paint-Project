@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaWindows, FaApple, FaLinux, FaDownload, FaPlay } from 'react-icons/fa';
+import { FaWindows, FaApple, FaLinux, FaDownload, FaPlay, FaAndroid } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
@@ -119,7 +119,7 @@ export default function Download() {
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <motion.div
+                        {/* <motion.div
                             className="bg-white p-6 rounded-2xl shadow-md text-center"
                             whileHover={{ y: -5 }}
                         >
@@ -138,7 +138,52 @@ export default function Download() {
                             >
                                 تحميل لويندوز
                             </a>
+                        </motion.div> */}
+                        {/* Windows 32-bit */}
+                        <motion.div
+                            className="bg-white p-6 rounded-2xl shadow-md text-center"
+                            whileHover={{ y: -5 }}
+                        >
+                            <div className="w-16 h-16 mx-auto bg-[#F0F8FF] rounded-full flex items-center justify-center text-[#0078D7] mb-4">
+                                <FaWindows size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 text-[#424242]">ويندوز 32-بت</h3>
+                            <p className="text-gray-600 mb-6">
+                                متوافق مع ويندوز 7/8/10/11
+                            </p>
+                            <a
+                                href="https://icolo.dl.sourceforge.net/project/tuxpaint/tuxpaint/0.9.34/tuxpaint-0.9.34-windows-i686-installer.exe?viasf=1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary inline-block"
+                            >
+                                تحميل لويندوز 32-بت
+                            </a>
                         </motion.div>
+
+                        {/* Windows 64-bit */}
+                        <motion.div
+                            className="bg-white p-6 rounded-2xl shadow-md text-center"
+                            whileHover={{ y: -5 }}
+                        >
+                            <div className="w-16 h-16 mx-auto bg-[#F0F8FF] rounded-full flex items-center justify-center text-[#0078D7] mb-4">
+                                <FaWindows size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 text-[#424242]">ويندوز 64-بت</h3>
+                            <p className="text-gray-600 mb-6">
+                                متوافق مع ويندوز 7/8/10/11
+                            </p>
+                            <a
+                                href="https://liquidtelecom.dl.sourceforge.net/project/tuxpaint/tuxpaint/0.9.34/tuxpaint-0.9.34-windows-x86_64-installer.exe?viasf=1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary inline-block"
+                            >
+                                تحميل لويندوز 64-بت
+                            </a>
+                        </motion.div>
+
+
 
                         <motion.div
                             className="bg-white p-6 rounded-2xl shadow-md text-center"
@@ -152,7 +197,7 @@ export default function Download() {
                                 متوافق مع ماك OS X 10.9 وأحدث
                             </p>
                             <a
-                                href="https://tuxpaint.org/download/mac/"
+                                href="https://tuxpaint.org/download/macos/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-primary inline-block"
@@ -181,7 +226,52 @@ export default function Download() {
                                 تحميل للينكس
                             </a>
                         </motion.div>
+                        {/* Android */}
+                        <motion.div
+                            className="bg-white p-6 rounded-2xl shadow-md text-center"
+                            whileHover={{ y: -5 }}
+                        >
+                            <div className="w-16 h-16 mx-auto bg-[#F0F8FF] rounded-full flex items-center justify-center text-[#199b26] mb-4">
+                                <FaAndroid size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 text-[#424242]">أندرويد</h3>
+                            <p className="text-gray-600 mb-6">
+                                متوافق مع أجهزة أندرويد
+                            </p>
+                            <a
+                                href="https://play.google.com/store/apps/details?id=org.tuxpaint.android"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary inline-block"
+                            >
+                                تحميل لأندرويد
+                            </a>
+                        </motion.div>
+
+                        {/* iPhone */}
+                        <motion.div
+                            className="bg-white p-6 rounded-2xl shadow-md text-center"
+                            whileHover={{ y: -5 }}
+                        >
+                            <div className="w-16 h-16 mx-auto bg-[#F0F8FF] rounded-full flex items-center justify-center text-[#09141d] mb-4">
+                                <FaApple size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 text-[#424242]">آيفون</h3>
+                            <p className="text-gray-600 mb-6">
+                                متوافق مع أجهزة آيفون
+                            </p>
+                            <a
+                                href="https://tuxpaint.org/download/macos/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary inline-block"
+                            >
+                                تحميل لآيفون
+                            </a>
+                        </motion.div>
                     </div>
+
+
 
                     <div className="mt-12 text-center">
                         <p className="text-gray-600 mb-4">
